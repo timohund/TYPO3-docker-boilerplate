@@ -1,0 +1,34 @@
+######################
+#### DEPENDENCIES ####
+######################
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:bootstrap_package/Configuration/TypoScript/setup.typoscript">
+
+
+##############
+#### PAGE ####
+##############
+page {
+    includeCSSLibs {
+        googlewebfont >
+    }
+
+    includeCSS {
+        theme = EXT:apache_solr_for_typo3_sitepackage/Resources/Public/Css/theme.min.css
+    }
+
+    includeJSLibs {
+
+    }
+
+    includeJS {
+
+    }
+
+    includeJSFooterlibs {
+
+    }
+
+    includeJSFooter {
+        apache_solr_for_typo3_sitepackage_scripts = EXT:apache_solr_for_typo3_sitepackage/Resources/Public/JavaScript/Dist/scripts.js
+    }
+}

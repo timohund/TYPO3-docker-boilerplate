@@ -4,16 +4,22 @@ MAKEFLAGS += --silent
 list:
 	sh -c "echo; $(MAKE) -p no_targets__ | awk -F':' '/^[a-zA-Z0-9][^\$$#\/\\t=]*:([^=]|$$)/ {split(\$$1,A,/ /);for(i in A)print A[i]}' | grep -v '__\$$' | grep -v 'Makefile'| sort"
 
+
 #############################
-# Create new project
+# Setup
 #############################
 
-create:
-	bash bin/create-project.sh $(ARGS)
+setup: new wait build
 
 #############################
 # Docker machine states
 #############################
+
+new:
+	docker-compose pull
+	docker-compose rm --force app
+	docker-compose build --no-cache --pull
+	docker-compose up -d --force-recreate
 
 up:
 	docker-compose up -d
@@ -23,6 +29,9 @@ start:
 
 stop:
 	docker-compose stop
+
+down:
+	docker-compose down --remove-orphans --volumes
 
 state:
 	docker-compose ps
@@ -43,6 +52,9 @@ mysql-backup:
 
 mysql-restore:
 	bash ./bin/restore.sh mysql
+
+mysql-rm:
+	docker-compose rm mysql
 
 #############################
 # Solr
@@ -65,7 +77,11 @@ build:
 	bash bin/build.sh
 
 clean:
-	test -d app/typo3temp && { rm -rf app/typo3temp/*; }
+	docker-compose down --remove-orphans --volumes
+	test -d app/private && { rm -rf app/private; }
+	test -d app/vendor && { rm -rf app/vendor; }
+	test -d app/web && { rm -rf app/web; }
+	test -d app/var && { rm -rf app/var; }
 
 bash: shell
 
@@ -74,6 +90,9 @@ shell:
 
 root:
 	docker-compose exec --user root app /bin/bash
+
+wait:
+	sleep 10
 
 #############################
 # TYPO3

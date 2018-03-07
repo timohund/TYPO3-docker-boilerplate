@@ -1,0 +1,43 @@
+{
+    "repositories": [
+        { "type": "path", "url": "packages/*" },
+        { "type": "composer", "url": "https://composer.typo3.org/" }
+    ],
+    "name": "apacke-solr-for-typo3/development-distribution",
+    "description" : "Distribution for development of EXT:solr based on helhum/typo3-distribution",
+    "license": "GPL-2.0+",
+    "require": {
+        "helhum/typo3-secure-web": "^0.2.7",
+        "helhum/typo3-console": "5.1.1",
+
+        "roave/security-advisories": "dev-master",
+
+        "typo3/cms-belog": "^8.7.10",
+        "typo3/cms-beuser": "^8.7.10",
+        "typo3/cms-context-help": "^8.7.10",
+        "typo3/cms-fluid-styled-content": "^8.7.10",
+        "typo3/cms-impexp": "^8.7.10",
+        "typo3/cms-info": "^8.7.10",
+        "typo3/cms-info-pagetsconfig": "^8.7.10",
+        "typo3/cms-lowlevel": "^8.7.10",
+        "typo3/cms-reports": "^8.7.10",
+        "typo3/cms-rte-ckeditor": "^8.7.10",
+        "typo3/cms-setup": "^8.7.10",
+        "typo3/cms-tstemplate": "^8.7.10",
+        "typo3/cms-viewpage": "^8.7.10",
+
+        "apache-solr-for-typo3/solr": "8.0.1",
+        "apache-solr-for-typo3/solrfluidexample": "1.0.0",
+
+        "dkd/apache-solr-for-typo3-sitepackage": "@dev"
+    },
+    "require-dev": {
+        "typo3/testing-framework": "^1.2.2 || ^2.0.1"
+    },
+    "extra": {
+        "typo3/cms": {
+            "root-dir": "private",
+            "web-dir": "web"
+        }
+    }
+}
